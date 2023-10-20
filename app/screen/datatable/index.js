@@ -40,21 +40,20 @@ function DataTable() {
   }, [search]);
 
   useEffect(() => {
-    search &&
-      setTimeout(() => {
+    if (search) {
+      const delay = setTimeout(() => {
         dispatch(fetchResultDrinks(search));
+        setHideDrink(true);
       }, 400);
-    search && setHideDrink(true);
+      return () => clearTimeout(delay);
+    }
   }, [search]);
 
   const tableHead = ['ID Drink', 'Nombre', 'Fotografia'];
-  const tableData = hideDrink
-    ? stateListDrink?.drinks?.map(item => {
-        return [item.idDrink, item.strDrink, item.strDrinkThumb];
-      })
-    : stateCategory?.drinks?.map(item => {
-        return [item.idDrink, item.strDrink, item.strDrinkThumb];
-      });
+  const dataToMap = hideDrink ? stateListDrink?.drinks : stateCategory?.drinks;
+  const tableData = dataToMap?.map(item => {
+    return [item.idDrink, item.strDrink, item.strDrinkThumb];
+  });
 
   const handlerOnFilter = () => setHideFilters(!hideFilters);
   const handlerOnSelectFilter = (data, index) => {

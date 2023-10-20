@@ -27,7 +27,7 @@ function input({
   useEffect(() => {
     const rendeBorder = {
       dark: {
-        default: COLORS.DARKBLUE_PARKUP,
+        default: COLORS.BLACK,
       },
       ligth: {
         default: COLORS.GRAY_SPACE,
@@ -38,7 +38,7 @@ function input({
 
   useEffect(() => {
     const renderMode = {
-      dark: COLORS.DARKBLUE_PARKUP,
+      dark: COLORS.BLACK,
       ligth: COLORS.GRAY_SPACE,
     };
     mode && setbackgroundColor(renderMode?.[mode]);
@@ -46,7 +46,7 @@ function input({
 
   useEffect(() => {
     const renderMode = {
-      dark: COLORS.YELLOW_PARKUP,
+      dark: COLORS.BLACK,
       ligth: COLORS.BLACK,
     };
     mode && setTextColor(renderMode?.[mode]);
@@ -54,7 +54,7 @@ function input({
 
   useEffect(() => {
     const renderMode = {
-      dark: COLORS.GRAY30,
+      dark: COLORS.BLACK,
       ligth: COLORS.GRAY80,
     };
     mode && setplaceholderTextColor(renderMode?.[mode]);
@@ -75,7 +75,7 @@ function input({
   const handleActiveInput = () => {
     const rendeBorder = {
       dark: {
-        default: COLORS.YELLOW_PARKUP,
+        default: COLORS.BLACK,
       },
       ligth: {
         default: COLORS.BLUE_BORDER,
