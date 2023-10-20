@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   },
   containerFilters: {
     paddingTop: 10,
-    paddingLeft: 20,
     paddingBottom: 10,
   },
   search: {
@@ -53,6 +52,24 @@ const styles = StyleSheet.create({
   containerDataTable: {
     borderWidth: 1.3,
     borderColor: COLORS.GREY_APP,
+  },
+  containerVisualize: {
+    height: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titleVisualize: {
+    color: COLORS.GREEN_APP,
+  },
+  containerTitleDataTitle: {
+    paddingLeft: 0,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  titleDataTitle: {
+    fontSize: 17,
+    color: COLORS.BLACK,
+    fontWeight: 'bold',
   },
 });
 

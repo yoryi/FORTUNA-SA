@@ -1,9 +1,9 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import {Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
-import {Table, Row, Rows} from 'react-native-table-component';
 import {useDispatch, useSelector} from 'react-redux';
+import {Table, Row, Rows} from 'react-native-table-component';
+import {Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
 
 //Components
 import styles from './styles';
@@ -20,12 +20,14 @@ function DataTable() {
   const [hideFilters, setHideFilters] = useState(false);
   const [fieldFilters, setFieldFilters] = useState('Ordinary Drink');
 
+  //Selectors
   const dispatch = useDispatch();
   const stateCategory = useSelector(({CATEGORY}) => CATEGORY?.category);
   const stateListDrink = useSelector(({DRINKS}) => DRINKS?.drinks);
   const stateListCategory = useSelector(
     ({LIST_CATEGORY}) => LIST_CATEGORY?.list,
   );
+
   useEffect(() => {
     dispatch(fetchCategory());
   }, []);
@@ -49,10 +51,20 @@ function DataTable() {
     }
   }, [search]);
 
+  const VisualizerImage = () => {
+    return (
+      <TouchableOpacity style={styles.containerVisualize}>
+        <Text style={styles.titleVisualize}>Visualizar</Text>
+      </TouchableOpacity>
+    );
+  };
+
   const tableHead = ['ID Drink', 'Nombre', 'Fotografia'];
   const dataToMap = hideDrink ? stateListDrink?.drinks : stateCategory?.drinks;
   const tableData = dataToMap?.map(item => {
-    return [item.idDrink, item.strDrink, item.strDrinkThumb];
+    const rowData = [item.idDrink, item.strDrink, item.strDrinkThumb];
+    rowData[2] = <VisualizerImage data={item.strDrinkThumb} />;
+    return rowData;
   });
 
   const handlerOnFilter = () => setHideFilters(!hideFilters);
@@ -109,6 +121,9 @@ function DataTable() {
 
   const renderDataTable = () => (
     <ScrollView>
+      <View style={styles.containerTitleDataTitle}>
+        <Text style={styles.titleDataTitle}>Data Table</Text>
+      </View>
       <Table borderStyle={styles.containerDataTable}>
         <Row data={tableHead} />
         <Rows data={tableData} />
