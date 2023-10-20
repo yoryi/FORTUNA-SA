@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, {useEffect, useState} from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, SafeAreaView, View} from 'react-native';
+import styles from './styles';
 
-function statusBar({mode, backgroundColor}) {
+function statusBar({mode, backgroundColor, ...props}) {
   const [barStyle, setBarStyle] = useState('default');
 
   useEffect(() => {
@@ -15,11 +16,17 @@ function statusBar({mode, backgroundColor}) {
 
   const renderUI = () => {
     return (
-      <StatusBar
-        animated={true}
-        barStyle={barStyle}
-        backgroundColor={backgroundColor}
-      />
+      <View style={[styles.statusBar, {backgroundColor}]}>
+        <SafeAreaView>
+          <StatusBar
+            animated={true}
+            translucent
+            barStyle={barStyle}
+            backgroundColor={backgroundColor}
+            {...props}
+          />
+        </SafeAreaView>
+      </View>
     );
   };
   return renderUI();
