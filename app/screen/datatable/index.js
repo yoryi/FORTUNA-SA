@@ -1,14 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  View,
-  Image,
-  Keyboard,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  ScrollView,
-} from 'react-native';
+import {Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {Table, Row, Rows} from 'react-native-table-component';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -17,6 +9,7 @@ import styles from './styles';
 import {COLORS, IMAGES} from '../../constants';
 import {Input, StatusBar} from '../../components';
 import {fetchCategory} from '../../redux/feature/listCategory';
+import {fetchResultCategory} from '../../redux/feature/resultCategory';
 
 function DataTable() {
   const [filter, setFilters] = useState('');
@@ -27,22 +20,20 @@ function DataTable() {
     ({LIST_CATEGORY}) => LIST_CATEGORY?.list,
   );
 
-  console.log('test: ', stateListCategory.drinks);
+  const stateCategory = useSelector(({CATEGORY}) => CATEGORY?.category);
 
   useEffect(() => {
     dispatch(fetchCategory());
   }, []);
 
-  const tableHead = ['Head', 'Head2', 'Head3', 'Head4'];
-  const tableData = [
-    ['1', '2', '3', '4'],
-    ['a', 'b', 'c', 'd'],
-    ['1', '2', '3', '456\n789'],
-    ['a', 'b', 'c', 'd'],
-    ['a', 'b', 'c', 'd'],
-    ['a', 'b', 'c', 'd'],
-    ['a', 'b', 'c', 'd'],
-  ];
+  useEffect(() => {
+    dispatch(fetchResultCategory('Cocktail'));
+  }, []);
+
+  const tableHead = ['ID Drink', 'Nombre', 'Fotografia'];
+  const tableData = stateCategory?.drinks?.map(item => {
+    return [item.idDrink, item.strDrink, item.strDrinkThumb];
+  });
 
   const handlerOnFilter = () => setHideFilters(!hideFilters);
   const renderSearch = () => (
@@ -71,10 +62,10 @@ function DataTable() {
   const renderFilters = () => (
     <View style={styles.containerFilters}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {stateListCategory.drinks.map(({strCategory}) => {
+        {stateListCategory?.drinks?.map((response, index) => {
           return (
-            <TouchableOpacity style={styles.buttonSelect}>
-              <Text style={styles.titleSelect}>{strCategory}</Text>
+            <TouchableOpacity key={index} style={styles.buttonSelect}>
+              <Text style={styles.titleSelect}>{response?.strCategory}</Text>
             </TouchableOpacity>
           );
         })}
@@ -83,26 +74,22 @@ function DataTable() {
   );
 
   const renderDataTable = () => (
-    <View style={{paddingTop: 10, flex: 1}}>
-      <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+    <ScrollView>
+      <Table borderStyle={styles.containerDataTable}>
         <Row data={tableHead} />
         <Rows data={tableData} />
       </Table>
-    </View>
+    </ScrollView>
   );
 
   const renderUI = () => {
     return (
-      <TouchableWithoutFeedback
-        accessible={false}
-        onPress={() => Keyboard.dismiss()}>
-        <View style={styles.wrapper}>
-          <StatusBar mode={'ligth'} backgroundColor={COLORS.BLACK} />
-          {renderSearch()}
-          {hideFilters && renderFilters()}
-          {renderDataTable()}
-        </View>
-      </TouchableWithoutFeedback>
+      <View style={styles.wrapper}>
+        <StatusBar mode={'ligth'} backgroundColor={COLORS.BLACK} />
+        {renderSearch()}
+        {hideFilters && renderFilters()}
+        {renderDataTable()}
+      </View>
     );
   };
   return renderUI();

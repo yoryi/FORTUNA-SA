@@ -50,6 +50,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  containerDataTable: {
+    borderWidth: 1.3,
+    borderColor: COLORS.GREY_APP,
+  },
 });
 
 export default styles;
