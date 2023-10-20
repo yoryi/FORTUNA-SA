@@ -1,5 +1,6 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
+import NavigateRef from '../../navigateRef';
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Table, Row, Rows} from 'react-native-table-component';
@@ -51,9 +52,12 @@ function DataTable() {
     }
   }, [search]);
 
+  const handleNavigatePreview = () => NavigateRef.navigate('Preview');
   const VisualizerImage = () => {
     return (
-      <TouchableOpacity style={styles.containerVisualize}>
+      <TouchableOpacity
+        onPress={handleNavigatePreview}
+        style={styles.containerVisualize}>
         <Text style={styles.titleVisualize}>Visualizar</Text>
       </TouchableOpacity>
     );

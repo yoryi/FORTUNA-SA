@@ -1,2 +1,3 @@
 import DataTable from './datatable';
-export {DataTable};
+import Preview from './preview';
+export {DataTable, Preview};
