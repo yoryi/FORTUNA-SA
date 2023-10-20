@@ -1,10 +1,6 @@
 ## FORTUNA SA
 prueba tecnica
 
-## Link Descarga Apk
-[descargar](https://drive.google.com/u/0/uc?id=1hillXHdG1jS-7sccVpxHFqBIcjmTH47V&export=download)
-
-
 ## Iniciar Proyecto
 
 Instalar Proyecto
@@ -32,3 +28,7 @@ captura de la app y vistas
 <img width="374" alt="dark" src="https://i.ibb.co/SsT1qKk/category.png">
 
 <img width="374" alt="dark" src="https://i.ibb.co/pbcbfV7/details.png">
+
+
+## Link Descarga Apk
+[descargar](https://drive.google.com/u/0/uc?id=1hillXHdG1jS-7sccVpxHFqBIcjmTH47V&export=download)
