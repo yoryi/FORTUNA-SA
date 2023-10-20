@@ -75,6 +75,10 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: COLORS.GREY_APP,
   },
+  headTitle: {
+    color: COLORS.BLACK,
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;

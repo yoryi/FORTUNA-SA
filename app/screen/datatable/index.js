@@ -81,7 +81,7 @@ function DataTable() {
   const renderSearch = () => (
     <View style={styles.containerSearch}>
       <View style={styles.containerTitleCompany}>
-        <Text style={styles.titleCompany}>Fortuna S.A</Text>
+        <Text style={styles.titleCompany}>FORTUNA S.A</Text>
       </View>
       <View style={styles.search}>
         <Input
@@ -137,7 +137,11 @@ function DataTable() {
   const renderDataTable = () => (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Table borderStyle={styles.containerDataTable}>
-        <Row data={tableHead} style={styles.headTable} />
+        <Row
+          data={tableHead}
+          style={styles.headTable}
+          textStyle={styles.headTitle}
+        />
         <Rows data={tableData} />
       </Table>
     </ScrollView>
