@@ -116,7 +116,14 @@ function DataTable() {
                     index == filter ? COLORS.GREEN_APP : COLORS.GREY_APP,
                 },
               ]}>
-              <Text style={styles.titleSelect}>{response?.strCategory}</Text>
+              <Text
+                numberOfLines={1}
+                style={[
+                  styles.titleSelect,
+                  {color: index == filter ? COLORS.WHITE : COLORS.BLACK},
+                ]}>
+                {response?.strCategory}
+              </Text>
             </TouchableOpacity>
           );
         })}
