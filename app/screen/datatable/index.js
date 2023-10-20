@@ -80,9 +80,12 @@ function DataTable() {
 
   const renderSearch = () => (
     <View style={styles.containerSearch}>
+      <View style={styles.containerTitleCompany}>
+        <Text style={styles.titleCompany}>Fortuna S.A</Text>
+      </View>
       <View style={styles.search}>
         <Input
-          width={'80%'}
+          width={'83%'}
           mode={'ligth'}
           value={search}
           keyboardType={'default'}
@@ -133,9 +136,6 @@ function DataTable() {
 
   const renderDataTable = () => (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.containerTitleDataTitle}>
-        <Text style={styles.titleDataTitle}>Lista Cocteles</Text>
-      </View>
       <Table borderStyle={styles.containerDataTable}>
         <Row data={tableHead} style={styles.headTable} />
         <Rows data={tableData} />

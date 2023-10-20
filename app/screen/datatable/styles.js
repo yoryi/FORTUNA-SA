@@ -7,14 +7,14 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.WHITE,
   },
   iconFilters: {
-    width: RESPOSIVE(3),
-    height: RESPOSIVE(3),
+    width: RESPOSIVE(2.5),
+    height: RESPOSIVE(2.5),
   },
   buttonFilter: {
-    height: 50,
-    width: 50,
     padding: 5,
     borderRadius: 10,
+    width: RESPOSIVE(6),
+    height: RESPOSIVE(6),
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORS.GREEN_APP,
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.GREY_APP,
   },
   titleSelect: {
+    padding: 10,
     color: COLORS.BLACK,
   },
   containerSearch: {
@@ -62,15 +63,13 @@ const styles = StyleSheet.create({
   titleVisualize: {
     color: COLORS.GREEN_APP,
   },
-  containerTitleDataTitle: {
-    paddingLeft: 0,
-    paddingTop: 10,
+  containerTitleCompany: {
     paddingBottom: 10,
   },
-  titleDataTitle: {
-    fontSize: 17,
-    color: COLORS.BLACK,
+  titleCompany: {
+    fontSize: 18,
     fontWeight: 'bold',
+    color: COLORS.WHITE,
   },
   headTable: {
     height: 50,
