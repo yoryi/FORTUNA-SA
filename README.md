@@ -1,6 +1,10 @@
 ## FORTUNA SA
 prueba tecnica
 
+## Link Descarga Apk
+[a link](https://drive.google.com/u/0/uc?id=1hillXHdG1jS-7sccVpxHFqBIcjmTH47V&export=download)
+
+
 ## Iniciar Proyecto
 
 Instalar Proyecto
