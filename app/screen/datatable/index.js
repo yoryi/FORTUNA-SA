@@ -94,7 +94,7 @@ function DataTable() {
                 styles.buttonSelect,
                 {
                   backgroundColor:
-                    index == filter ? COLORS.GREY_APP : COLORS.GREY_APP,
+                    index == filter ? COLORS.GREEN_APP : COLORS.GREY_APP,
                 },
               ]}>
               <Text style={styles.titleSelect}>{response?.strCategory}</Text>
