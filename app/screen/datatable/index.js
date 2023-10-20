@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import {Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
@@ -12,23 +13,24 @@ import {fetchCategory} from '../../redux/feature/listCategory';
 import {fetchResultCategory} from '../../redux/feature/resultCategory';
 
 function DataTable() {
-  const [filter, setFilters] = useState('');
+  const [search, setSearch] = useState('');
+  const [filter, setFilters] = useState(0);
   const [hideFilters, setHideFilters] = useState(false);
+  const [fieldFilters, setFieldFilters] = useState('Ordinary Drink');
 
   const dispatch = useDispatch();
+  const stateCategory = useSelector(({CATEGORY}) => CATEGORY?.category);
   const stateListCategory = useSelector(
     ({LIST_CATEGORY}) => LIST_CATEGORY?.list,
   );
-
-  const stateCategory = useSelector(({CATEGORY}) => CATEGORY?.category);
 
   useEffect(() => {
     dispatch(fetchCategory());
   }, []);
 
   useEffect(() => {
-    dispatch(fetchResultCategory('Cocktail'));
-  }, []);
+    dispatch(fetchResultCategory(fieldFilters));
+  }, [filter]);
 
   const tableHead = ['ID Drink', 'Nombre', 'Fotografia'];
   const tableData = stateCategory?.drinks?.map(item => {
@@ -36,15 +38,20 @@ function DataTable() {
   });
 
   const handlerOnFilter = () => setHideFilters(!hideFilters);
+  const handlerOnSelectFilter = (data, index) => {
+    setFilters(index);
+    setFieldFilters(data?.strCategory);
+  };
+
   const renderSearch = () => (
     <View style={styles.containerSearch}>
       <View style={styles.search}>
         <Input
           width={'80%'}
           mode={'ligth'}
-          value={filter}
+          value={search}
           keyboardType={'default'}
-          onChangeText={setFilters}
+          onChangeText={setSearch}
           background={COLORS.GREY_APP}
           placeholder={'Buscar Nombre Coctel'}
         />
@@ -64,7 +71,16 @@ function DataTable() {
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {stateListCategory?.drinks?.map((response, index) => {
           return (
-            <TouchableOpacity key={index} style={styles.buttonSelect}>
+            <TouchableOpacity
+              key={index}
+              onPress={() => handlerOnSelectFilter(response, index)}
+              style={[
+                styles.buttonSelect,
+                {
+                  backgroundColor:
+                    index == filter ? COLORS.GREY_APP : COLORS.GREY_APP,
+                },
+              ]}>
               <Text style={styles.titleSelect}>{response?.strCategory}</Text>
             </TouchableOpacity>
           );
