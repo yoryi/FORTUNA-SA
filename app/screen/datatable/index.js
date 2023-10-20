@@ -40,7 +40,10 @@ function DataTable() {
   }, [search]);
 
   useEffect(() => {
-    search && dispatch(fetchResultDrinks(search));
+    search &&
+      setTimeout(() => {
+        dispatch(fetchResultDrinks(search));
+      }, 400);
     search && setHideDrink(true);
   }, [search]);
 
