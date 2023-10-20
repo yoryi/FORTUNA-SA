@@ -6,6 +6,7 @@ import {
   Keyboard,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  ScrollView,
 } from 'react-native';
 import {Table, Row, Rows} from 'react-native-table-component';
 
@@ -16,6 +17,7 @@ import {Input, StatusBar} from '../../components';
 
 function DataTable() {
   const [filter, setFilters] = useState('');
+  const [hideFilters, setHideFilters] = useState(false);
 
   const tableHead = ['Head', 'Head2', 'Head3', 'Head4'];
   const tableData = [
@@ -28,9 +30,10 @@ function DataTable() {
     ['a', 'b', 'c', 'd'],
   ];
 
+  const handlerOnFilter = () => setHideFilters(!hideFilters);
   const renderSearch = () => (
-    <View style={styles.containerFilters}>
-      <View style={styles.containerInputs}>
+    <View style={styles.containerSearch}>
+      <View style={styles.search}>
         <Input
           width={'80%'}
           mode={'ligth'}
@@ -40,7 +43,7 @@ function DataTable() {
           background={COLORS.GREY_APP}
           placeholder={'Buscar Nombre Coctel'}
         />
-        <TouchableOpacity style={styles.buttonFilter}>
+        <TouchableOpacity style={styles.buttonFilter} onPress={handlerOnFilter}>
           <Image
             source={IMAGES.FILTERS}
             style={styles.iconFilters}
@@ -52,13 +55,17 @@ function DataTable() {
   );
 
   const renderFilters = () => (
-    <View>
-      <Text>Filtros</Text>
+    <View style={styles.containerFilters}>
+      <ScrollView horizontal>
+        <TouchableOpacity style={styles.buttonSelect}>
+          <Text style={styles.titleSelect}>Filtros</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 
   const renderDataTable = () => (
-    <View>
+    <View style={{paddingTop: 10, flex: 1}}>
       <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
         <Row data={tableHead} />
         <Rows data={tableData} />
@@ -74,7 +81,7 @@ function DataTable() {
         <View style={styles.wrapper}>
           <StatusBar mode={'ligth'} backgroundColor={COLORS.BLACK} />
           {renderSearch()}
-          {renderFilters()}
+          {hideFilters && renderFilters()}
           {renderDataTable()}
         </View>
       </TouchableWithoutFeedback>

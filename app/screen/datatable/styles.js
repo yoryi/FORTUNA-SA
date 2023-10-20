@@ -19,7 +19,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.GREEN_APP,
   },
-  containerFilters: {
+  buttonSelect: {
+    height: 40,
+    minWidth: 100,
+    marginRight: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.GREY_APP,
+  },
+  titleSelect: {
+    color: COLORS.BLACK,
+  },
+  containerSearch: {
     height: 110,
     paddingLeft: 20,
     paddingRight: 20,
@@ -27,7 +39,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.BLACK,
   },
-  containerInputs: {
+  containerFilters: {
+    paddingTop: 10,
+    paddingLeft: 20,
+    paddingBottom: 10,
+  },
+  search: {
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
