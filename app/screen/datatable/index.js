@@ -10,32 +10,48 @@ import styles from './styles';
 import {COLORS, IMAGES} from '../../constants';
 import {Input, StatusBar} from '../../components';
 import {fetchCategory} from '../../redux/feature/listCategory';
+import {fetchResultDrinks} from '../../redux/feature/resultDrinks';
 import {fetchResultCategory} from '../../redux/feature/resultCategory';
 
 function DataTable() {
   const [search, setSearch] = useState('');
   const [filter, setFilters] = useState(0);
+  const [hideDrink, setHideDrink] = useState(false);
   const [hideFilters, setHideFilters] = useState(false);
   const [fieldFilters, setFieldFilters] = useState('Ordinary Drink');
 
   const dispatch = useDispatch();
   const stateCategory = useSelector(({CATEGORY}) => CATEGORY?.category);
+  const stateListDrink = useSelector(({DRINKS}) => DRINKS?.drinks);
   const stateListCategory = useSelector(
     ({LIST_CATEGORY}) => LIST_CATEGORY?.list,
   );
-
   useEffect(() => {
     dispatch(fetchCategory());
   }, []);
 
   useEffect(() => {
     dispatch(fetchResultCategory(fieldFilters));
+    filter && setHideDrink(false);
   }, [filter]);
 
+  useEffect(() => {
+    search && dispatch(fetchResultDrinks(search));
+  }, [search]);
+
+  useEffect(() => {
+    search && dispatch(fetchResultDrinks(search));
+    search && setHideDrink(true);
+  }, [search]);
+
   const tableHead = ['ID Drink', 'Nombre', 'Fotografia'];
-  const tableData = stateCategory?.drinks?.map(item => {
-    return [item.idDrink, item.strDrink, item.strDrinkThumb];
-  });
+  const tableData = hideDrink
+    ? stateListDrink?.drinks?.map(item => {
+        return [item.idDrink, item.strDrink, item.strDrinkThumb];
+      })
+    : stateCategory?.drinks?.map(item => {
+        return [item.idDrink, item.strDrink, item.strDrinkThumb];
+      });
 
   const handlerOnFilter = () => setHideFilters(!hideFilters);
   const handlerOnSelectFilter = (data, index) => {

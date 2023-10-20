@@ -1,3 +1,4 @@
 import LIST_CATEGORY from './listCategory';
 import CATEGORY from './resultCategory';
-export {LIST_CATEGORY, CATEGORY};
+import DRINKS from './resultDrinks';
+export {LIST_CATEGORY, CATEGORY, DRINKS};

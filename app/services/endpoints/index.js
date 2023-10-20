@@ -1,6 +1,6 @@
 import service from '../api';
-async function searchCoctel() {
-  const url = '/api/json/v1/1/search.php?f=a';
+async function searchCoctel(payload) {
+  const url = `/api/json/v1/1/search.php?s=${payload}`;
   return service(url);
 }
 
