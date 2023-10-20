@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.BLACK,
   },
+  buttonClose: {
+    height: RESPOSIVE(2.5),
+    width: RESPOSIVE(2.5),
+  },
   iconClose: {
     height: RESPOSIVE(2.5),
     width: RESPOSIVE(2.5),

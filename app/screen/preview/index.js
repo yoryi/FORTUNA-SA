@@ -13,7 +13,7 @@ function Preview() {
     return (
       <View style={styles.containerTabBar}>
         <TouchableOpacity
-          style={styles.buttonFilter}
+          style={styles.buttonClose}
           onPress={handleNavigatePreview}>
           <Image
             source={IMAGES.CLOSE}
