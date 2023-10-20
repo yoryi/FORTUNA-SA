@@ -52,11 +52,12 @@ function DataTable() {
     }
   }, [search]);
 
-  const handleNavigatePreview = () => NavigateRef.navigate('Preview');
-  const VisualizerImage = () => {
+  const handleNavigatePreview = payload =>
+    NavigateRef.navigate('Preview', {payload});
+  const VisualizerImage = payload => {
     return (
       <TouchableOpacity
-        onPress={handleNavigatePreview}
+        onPress={() => handleNavigatePreview(payload)}
         style={styles.containerVisualize}>
         <Text style={styles.titleVisualize}>Visualizar</Text>
       </TouchableOpacity>
