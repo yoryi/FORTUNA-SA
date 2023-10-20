@@ -1,7 +1,11 @@
 import config from './config';
-const api = async (url, method, data) => {
-  return config({url, method, data})
+const api = async url => {
+  return config
+    .get(url)
     .then(response => response)
-    .catch(_ => false);
+    .catch(error => {
+      console.error('Axios Error:', error);
+    });
 };
+
 export default api;

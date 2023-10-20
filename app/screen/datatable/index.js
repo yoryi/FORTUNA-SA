@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   View,
@@ -9,15 +10,28 @@ import {
   ScrollView,
 } from 'react-native';
 import {Table, Row, Rows} from 'react-native-table-component';
+import {useDispatch, useSelector} from 'react-redux';
 
 //Components
 import styles from './styles';
 import {COLORS, IMAGES} from '../../constants';
 import {Input, StatusBar} from '../../components';
+import {fetchCategory} from '../../redux/feature/listCategory';
 
 function DataTable() {
   const [filter, setFilters] = useState('');
   const [hideFilters, setHideFilters] = useState(false);
+
+  const dispatch = useDispatch();
+  const stateListCategory = useSelector(
+    ({LIST_CATEGORY}) => LIST_CATEGORY?.list,
+  );
+
+  console.log('test: ', stateListCategory.drinks);
+
+  useEffect(() => {
+    dispatch(fetchCategory());
+  }, []);
 
   const tableHead = ['Head', 'Head2', 'Head3', 'Head4'];
   const tableData = [
@@ -56,10 +70,14 @@ function DataTable() {
 
   const renderFilters = () => (
     <View style={styles.containerFilters}>
-      <ScrollView horizontal>
-        <TouchableOpacity style={styles.buttonSelect}>
-          <Text style={styles.titleSelect}>Filtros</Text>
-        </TouchableOpacity>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {stateListCategory.drinks.map(({strCategory}) => {
+          return (
+            <TouchableOpacity style={styles.buttonSelect}>
+              <Text style={styles.titleSelect}>{strCategory}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
     </View>
   );

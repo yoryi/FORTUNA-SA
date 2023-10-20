@@ -2,14 +2,14 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import endpoints from '../../services/endpoints';
 
 const initialState = {
-  listCategory: [],
+  list: [],
   status: null,
 };
 
 export const fetchCategory = createAsyncThunk('listCategory', async () => {
   const {listCategory} = endpoints;
   const response = await listCategory();
-  return response;
+  return response.data;
 });
 
 export const ListCategory = createSlice({
@@ -22,7 +22,7 @@ export const ListCategory = createSlice({
     },
     [fetchCategory.fulfilled]: (state, action) => {
       state.status = 'succeeded';
-      state.listCategory = action.listCategory;
+      state.list = action.payload;
     },
     [fetchCategory.rejected]: (state, action) => {
       state.status = 'failed';

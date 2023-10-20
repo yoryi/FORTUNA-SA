@@ -4,7 +4,6 @@ import {configureStore} from '@reduxjs/toolkit';
 import {LIST_CATEGORY} from '../feature/index';
 
 const reducers = combineReducers({
-  //Actions
   LIST_CATEGORY,
 });
 
