@@ -46,7 +46,7 @@ function DataTable() {
       const delay = setTimeout(() => {
         dispatch(fetchResultDrinks(search));
         setHideDrink(true);
-      }, 400);
+      }, 300);
       return () => clearTimeout(delay);
     }
   }, [search]);
@@ -120,12 +120,12 @@ function DataTable() {
   );
 
   const renderDataTable = () => (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.containerTitleDataTitle}>
-        <Text style={styles.titleDataTitle}>Data Table</Text>
+        <Text style={styles.titleDataTitle}>Lista Cocteles</Text>
       </View>
       <Table borderStyle={styles.containerDataTable}>
-        <Row data={tableHead} />
+        <Row data={tableHead} style={styles.headTable} />
         <Rows data={tableData} />
       </Table>
     </ScrollView>

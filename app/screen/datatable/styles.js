@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.BLACK,
   },
   containerFilters: {
+    paddingLeft: 5,
     paddingTop: 10,
     paddingBottom: 10,
   },
@@ -70,6 +71,10 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: COLORS.BLACK,
     fontWeight: 'bold',
+  },
+  headTable: {
+    height: 50,
+    backgroundColor: COLORS.GREY_APP,
   },
 });
 
